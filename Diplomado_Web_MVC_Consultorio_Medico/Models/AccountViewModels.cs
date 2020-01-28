@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace Diplomado_Web_MVC_Consultorio_Medico.Models
@@ -65,6 +66,31 @@ namespace Diplomado_Web_MVC_Consultorio_Medico.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Name")]
+        [StringLength(30,ErrorMessage = "The {0} must be t least {2} characters long.", MinimumLength = 3)]
+        public string Nombre { get; set; }
+
+        [Required]
+        [Display(Name = "LastName")]
+        [StringLength(30, ErrorMessage = "The {0} must be t least {2} characters long.", MinimumLength = 3)]
+        public string Apellido { get; set; }
+
+        [Required]
+        [Display(Name = "Address")]
+        [StringLength(100, ErrorMessage = "The {0} must be t least {2} characters long.", MinimumLength = 10)]
+        public string Direccion { get; set; }
+
+        [Required]
+        [Display(Name = "Birthday")]
+        [DataType(DataType.Date)]
+        public DateTime Fecha_Nacimiento { get; set; }
+
+        [Required]
+        [Display(Name = "Identication")]
+        [StringLength(15, ErrorMessage = "The {0} must be t least {2} characters long.", MinimumLength = 11)]
+        public string Identificacion { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -75,6 +101,7 @@ namespace Diplomado_Web_MVC_Consultorio_Medico.Models
         [Display(Name = "Password")]
         public string Password { get; set; }
 
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
