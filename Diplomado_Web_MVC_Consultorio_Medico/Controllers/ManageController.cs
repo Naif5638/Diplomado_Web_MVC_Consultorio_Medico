@@ -66,6 +66,7 @@ namespace Diplomado_Web_MVC_Consultorio_Medico.Controllers
             var userId = User.Identity.GetUserId();
             var model = new IndexViewModel
             {
+                UserId = userId,
                 HasPassword = HasPassword(),
                 PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
                 TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),

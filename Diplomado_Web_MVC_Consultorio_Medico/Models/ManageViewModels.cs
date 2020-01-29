@@ -7,6 +7,7 @@ namespace Diplomado_Web_MVC_Consultorio_Medico.Models
 {
     public class IndexViewModel
     {
+        public string UserId { get; set; }
         public bool HasPassword { get; set; }
         public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
