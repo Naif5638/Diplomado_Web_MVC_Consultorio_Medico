@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+
 
 namespace Diplomado_Web_MVC_Consultorio_Medico.Models
 {
@@ -13,6 +15,9 @@ namespace Diplomado_Web_MVC_Consultorio_Medico.Models
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Direccion { get; set; }
+
+        [DataType(DataType.DateTime)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Fecha_Nacimiento { get; set; }
         public string Identificacion { get; set; }
 
@@ -36,5 +41,6 @@ namespace Diplomado_Web_MVC_Consultorio_Medico.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

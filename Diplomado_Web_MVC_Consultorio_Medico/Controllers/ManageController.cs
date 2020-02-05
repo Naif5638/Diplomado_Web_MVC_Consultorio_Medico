@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Diplomado_Web_MVC_Consultorio_Medico.Models;
+using System.Net.Http;
 
 namespace Diplomado_Web_MVC_Consultorio_Medico.Controllers
 {
@@ -74,6 +75,46 @@ namespace Diplomado_Web_MVC_Consultorio_Medico.Controllers
                 BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
             };
             return View(model);
+        }
+
+
+        public ActionResult ManageUser()
+        {
+            var userId = User.Identity.GetUserId<string>();
+            var user = UserManager.Users.FirstOrDefault(u => u.Id == userId);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            user.Fecha_Nacimiento = user.Fecha_Nacimiento.Date;
+            return Json(new { data = user }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> ManageUser(ApplicationUser model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+            var user = await UserManager.FindByIdAsync(model.Id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            user.Nombre = model.Nombre;
+            user.Apellido = model.Apellido;
+            user.Direccion = model.Direccion;
+            user.Fecha_Nacimiento = model.Fecha_Nacimiento;
+            user.Identificacion = model.Identificacion;
+
+            var result = await UserManager.UpdateAsync(user);
+            if (!result.Succeeded)
+            {
+                return HttpNotFound();
+            }
+            return RedirectToAction("Index");
         }
 
         //

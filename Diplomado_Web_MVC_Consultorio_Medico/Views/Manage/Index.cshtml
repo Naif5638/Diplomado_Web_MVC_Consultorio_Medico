@@ -12,9 +12,7 @@
     <dl class="dl-horizontal">
         <dt>Personal Data:</dt>
         <dd>
-            [
-                @Html.ActionLink("Manage", "ManageUser")
-            ]
+            [<a class="btn btn-link" onclick="ManageUser()" data-toggle="modal" data-target="#personalData">Modify</a>]
         </dd>
         <dt>Password:</dt>
         <dd>
@@ -90,4 +88,62 @@
                 }*@
         </dd>
     </dl>
+</div>
+
+<div class="modal fade" id="personalData" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel" style="float:left; display:block;">Modal title</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="control-label col-md-4">Nombres</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="nombres" />
+                        @Html.ValidationMessage("", new { @class = "text-danger" })
+                    </div>
+                </div><br /><br />
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Apellidos</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="apellidos"/>
+                        @Html.ValidationMessage("", new { @class = "text-danger" })
+                    </div>
+                </div><br /><br />
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Direccion</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="direccion"/>
+                        @Html.ValidationMessage("", new { @class = "text-danger" })
+                    </div>
+                </div><br /><br />
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Fecha Nacimiento</label>
+                    <div class="col-md-8">
+                        <input type="date" class="form-control" id="fechaNacimiento" />
+                        @Html.ValidationMessage("", new { @class = "text-danger" })
+                    </div>
+                </div><br /><br />
+
+                <div class="form-group">
+                    <label class="control-label col-md-4">Identificacion</label>
+                    <div class="col-md-8">
+                        <input type="text" class="form-control" id="identificacion" />
+                        @Html.ValidationMessage("", new { @class = "text-danger" })
+                    </div>
+                </div><br /><br />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
 </div>
