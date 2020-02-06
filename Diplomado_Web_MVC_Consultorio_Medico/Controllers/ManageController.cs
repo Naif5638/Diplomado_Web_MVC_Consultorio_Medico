@@ -114,7 +114,7 @@ namespace Diplomado_Web_MVC_Consultorio_Medico.Controllers
             {
                 return HttpNotFound();
             }
-            return RedirectToAction("Index");
+            return Json(new { success = true });
         }
 
         //

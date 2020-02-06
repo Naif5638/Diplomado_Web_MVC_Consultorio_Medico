@@ -94,12 +94,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="exampleModalLabel" style="float:left; display:block;">Modal title</h4>
+                <h4 class="modal-title" id="exampleModalLabel" style="float:left; display:block;">Modify Personal Data</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
+                @Html.HiddenFor(m => m.UserId)
                 <div class="form-group">
                     <label class="control-label col-md-4">Nombres</label>
                     <div class="col-md-8">
@@ -142,7 +143,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" onclick="Save()" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
